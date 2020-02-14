@@ -39,6 +39,7 @@ class ClientForm extends React.Component{
                     no_data:{
                         label: 'Crear cliente sin RUC',
                         onChange: (bool) => console.log(bool),
+                        hidden: true,
                     },
                     ruc_dni:{
                         label: 'RUC o DNI',
@@ -133,7 +134,7 @@ class ClientForm extends React.Component{
 
     _checkClient = (id) => {
         this.setState({validating_rucdni: true});
-        fetch('http://solucionesoggk.com/api/v1/client_exists?client_id='+id, {
+        fetch('https://solucionesoggk.com/api/v1/client_exists?client_id='+id, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -178,7 +179,7 @@ class ClientForm extends React.Component{
     };
 
     _completeDataFields = async () => {
-        fetch('http://solucionesoggk.com/api/v1/client_form_data', {
+        fetch('https://solucionesoggk.com/api/v1/client_form_data', {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -211,7 +212,7 @@ class ClientForm extends React.Component{
         this.clientFormTwo.append('timestamp',position.timestamp);
         if( !this.state.useShortForm ){
             if( !this.state.itsAClientUpdate ){
-                fetch('http://solucionesoggk.com/api/v1/insert_client', {
+                fetch('https://solucionesoggk.com/api/v1/insert_client', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -220,7 +221,7 @@ class ClientForm extends React.Component{
                     }).then((response) => response.json()).then((res => {
                         if (res.success === true){
                                 if( this.client_data.id_cliente_no_ruc ){
-                                            fetch('http://solucionesoggk.com/api/v1/delete_client_no_ruc?id='+this.client_data.id_cliente_no_ruc+'&idusuario='+this.state.current_user.id, {
+                                            fetch('https://solucionesoggk.com/api/v1/delete_client_no_ruc?id='+this.client_data.id_cliente_no_ruc+'&idusuario='+this.state.current_user.id, {
                                                 method: 'GET',
                                                 headers: {
                                                     'Content-Type': 'multipart/form-data',
@@ -238,7 +239,7 @@ class ClientForm extends React.Component{
             }
             else{
                 //console.log(this.clientFormTwo);
-                fetch('http://solucionesoggk.com/api/v1/update_client', {
+                fetch('https://solucionesoggk.com/api/v1/update_client', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -256,7 +257,7 @@ class ClientForm extends React.Component{
             }
         }
         else{
-            fetch('http://solucionesoggk.com/api/v1/insert_client_no_ruc', {
+            fetch('https://solucionesoggk.com/api/v1/insert_client_no_ruc', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'multipart/form-data',

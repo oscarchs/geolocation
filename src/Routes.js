@@ -13,6 +13,7 @@ import Profile from './user/Profile';
 import AdminHome from './admin/Home';
 import DriverHome from './driver/Home';
 import PendingList from './driver/PendingList';
+import DeliveredList from './driver/DeliveredList';
 import TraceMapImproved from './driver/TraceMapImproved';
 import ClientForm from './user/ClientForm';
 import ClientList from './user/ClientList';
@@ -165,6 +166,13 @@ const DriverManagement = createStackNavigator({
       screen: PendingList,
       navigationOptions: {
         title: 'Lista de entregas pendientes',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    DeliveredList: {
+      screen: DeliveredList,
+      navigationOptions: {
+        title: 'Lista de entregas realizadas',
         headerBackTitle: 'Atrás',
       },
     },

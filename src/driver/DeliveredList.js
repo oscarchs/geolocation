@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import CustomGeneralItem from '../CustomGeneralItem';
 import AsyncStorage from '@react-native-community/async-storage';
 
-class PendingList extends React.Component{
+class DeliveredList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -20,7 +20,7 @@ class PendingList extends React.Component{
     }
     componentDidMount = async () => {
         this.setState({spinner: true});
-        this._getPendingList();
+        this._getDeliveredList();
     };
 
     _getCurrentUser = async () =>{
@@ -32,8 +32,8 @@ class PendingList extends React.Component{
       this.props.navigation.navigate('TraceMap',{unique_client_data: item})
     };
 
-    _getPendingList = () => {
-      fetch('https://solucionesoggk.com/api/v1/pending_list', {
+    _getDeliveredList = () => {
+      fetch('http://solucionesoggk.com/api/v1/delivered_list', {
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -50,7 +50,7 @@ class PendingList extends React.Component{
     _goToMap = (item) => {
       this.setState({loading_locations: true});
         //get locations
-        fetch('https://solucionesoggk.com/api/v1/client_locations?ruc_dni=' + item.ruc_dni, {
+        fetch('http://solucionesoggk.com/api/v1/client_locations?ruc_dni=' + item.ruc_dni, {
             method: 'GET',
             headers: {
             'Content-Type': 'multipart/form-data',
@@ -68,44 +68,6 @@ class PendingList extends React.Component{
         }));
     };
 
-    _MarkAsDelivered = (item) =>{
-
-      Alert.alert(
-        'Confirmación',
-        'La guía de remisión '+item.numeracion+' será marcada como entregada, desea continuar?',
-        [
-          {text: 'OK', 
-              onPress: () => {
-                var update_form = new FormData();
-                update_form.append('idgremisionh',item.id_guia_remisionh);
-                this.setState({spinner:true});
-                this._getCurrentUser().then( current_user => {
-                    update_form.append('id_usuario_despachador', current_user.id);
-                    fetch('https://solucionesoggk.com/api/v1/update_gremisionh', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'multipart/form-data',
-                                    'Cache-Control': 'no-cache'
-                                },
-                                body:update_form,
-                                }).then((response) => response.json()).then((res => {
-                                    alert(res.message);
-                                }));
-                                this._getPendingList();
-
-                })
-              } 
-          },
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          }
-        ],
-        {cancelable: false},
-      );
-    }
-
 
     render(){
         return(
@@ -113,7 +75,7 @@ class PendingList extends React.Component{
             <ScrollView> 
             <Spinner
                 visible={this.state.spinner}
-                textContent={'Cargando entregas pendientes...'}
+                textContent={'Cargando entregas realizadas...'}
                 textStyle={styles.spinnerTextStyle}
             />
 
@@ -134,10 +96,10 @@ class PendingList extends React.Component{
                                 f_entrega={item.f_entrega}
                                 codigoNB={item.codigoNB}    
                                 numero_pedido={item.numero_pedido}
-                                numeracion={item.numeracion}                                  
+                                numeracion={item.numeracion}
+                                f_entregado={item.f_entregado}                             
                                 key={item.id_guia_remisionh}
                                 go_to_map={ () => this._goToMap(item) }
-                                mark_as_delivered={ () => this._MarkAsDelivered(item) }
                                 bottomDivider
                             />
                             ))
@@ -220,4 +182,4 @@ const styles = StyleSheet.create({
 
     }
   });
-export default PendingList;
+export default DeliveredList;

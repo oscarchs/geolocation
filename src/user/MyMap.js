@@ -80,7 +80,7 @@ class MyMap extends React.Component{
         var current_position = new FormData();
         current_position.append('latitude',position.coords.latitude);
         current_position.append('longitude',position.coords.longitude);
-        fetch('http://solucionesoggk.com/api/v1/map_clients_in_range',{
+        fetch('https://solucionesoggk.com/api/v1/map_clients_in_range',{
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',

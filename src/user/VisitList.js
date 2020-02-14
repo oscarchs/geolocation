@@ -34,7 +34,7 @@ class VisitList extends React.Component{
     }
 
     _getVisitList = async () =>{
-        fetch('http://solucionesoggk.com/api/v1/user_visits?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/user_visits?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',

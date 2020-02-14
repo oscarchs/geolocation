@@ -28,7 +28,7 @@ class Login extends React.Component{
             
                  <Image
                     style={{width: 200, height: 100}}
-                    source={{ uri: 'http://www.solucionesoggk.com/images/logo1.png'}}/>
+                    source={{ uri: 'https://www.solucionesoggk.com/images/logo1.png'}}/>
 
                     <TextInput style={styles.inputBox}
                     underlineColorAndroid='rgba(0,0,0,0)' 
@@ -68,7 +68,7 @@ class Login extends React.Component{
         let formdata = new FormData();
             formdata.append('email', this.state.email);
             formdata.append('password', this.state.password);
-        fetch('http://solucionesoggk.com/api/v1/user_authentication', {
+        fetch('https://solucionesoggk.com/api/v1/user_authentication', {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',

@@ -108,7 +108,7 @@ class VisitFormImproved extends React.Component{
                                             }
                         }
                     );
-        fetch('http://solucionesoggk.com/api/v1/near_clients', {
+        fetch('https://solucionesoggk.com/api/v1/near_clients', {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -134,7 +134,7 @@ class VisitFormImproved extends React.Component{
             });
 
 
-        fetch('http://solucionesoggk.com/api/v1/near_clients_no_ruc', {
+        fetch('https://solucionesoggk.com/api/v1/near_clients_no_ruc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -160,7 +160,7 @@ class VisitFormImproved extends React.Component{
             });
 
 
-        fetch('http://solucionesoggk.com/api/v1/near_clients_broken_location', {
+        fetch('https://solucionesoggk.com/api/v1/near_clients_broken_location', {
             method: 'POST',
             headers: {
                 'Cache-Control': 'no-cache'
@@ -215,7 +215,7 @@ class VisitFormImproved extends React.Component{
             this.visitFormTwo.append('idusuario',id);
             console.log(this.visitFormTwo);
             // here is executed the post operation with a new endpoint (improved to insert a dinamic visit based on the client type)
-            fetch('http://solucionesoggk.com/api/v1/add_visit_improved', {
+            fetch('https://solucionesoggk.com/api/v1/add_visit_improved', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -232,7 +232,7 @@ class VisitFormImproved extends React.Component{
                     location_info.append('id', this.state.selected_client.id);
                     location_info.append('type', this.state.selected_client.type)
                     console.log(location_info);
-                    fetch('http://solucionesoggk.com/api/v1/update_client_location', {
+                    fetch('https://solucionesoggk.com/api/v1/update_client_location', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',

@@ -39,7 +39,7 @@ class RecommendedVisitList extends React.Component{
     }
 
     _getVisitList = async () =>{
-        fetch('http://solucionesoggk.com/api/v1/clients_not_visited_since?days_ago=7', {
+        fetch('https://solucionesoggk.com/api/v1/clients_not_visited_since?days_ago=7', {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',

@@ -70,7 +70,7 @@ class TraceMap extends React.Component{
     }
 
     _getUserClients = async () => {
-        fetch('http://solucionesoggk.com/api/v1/user_clients_detail?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/user_clients_detail?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -83,7 +83,7 @@ class TraceMap extends React.Component{
                     alert(res.message);
                 }
             }));
-        fetch('http://solucionesoggk.com/api/v1/no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -99,7 +99,7 @@ class TraceMap extends React.Component{
     }
 
     _getOtherUsersClients = async () => {
-        fetch('http://solucionesoggk.com/api/v1/other_clients?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/other_clients?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -112,7 +112,7 @@ class TraceMap extends React.Component{
                     alert(res.message);
                 }
             }));
-        fetch('http://solucionesoggk.com/api/v1/others_no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/others_no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'multipart/form-data',

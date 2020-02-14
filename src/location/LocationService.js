@@ -48,7 +48,7 @@ class LocationService{
     };
 
     _getSomeInfo = async () => {
-        fetch('http://solucionesoggk.com/api/v1/appversion',
+        fetch('https://solucionesoggk.com/api/v1/appversion',
                 { method: 'GET',
                  headers: {'Content-Type': 'multipart/form-data'} })
             .then( response => response.json() ).then( result => console.log(result) );
@@ -64,7 +64,7 @@ class LocationService{
             formdata.append('battery_life',batteryLevel.toString());
             this._getCurrentUser().then( current_user => 
                                                         {   formdata.append('idusuario', current_user.id)
-                                                            fetch('http://solucionesoggk.com/api/v1/location', {
+                                                            fetch('https://solucionesoggk.com/api/v1/location', {
                                                                     method: 'POST',
                                                                     headers: {
                                                                        'Content-Type': 'multipart/form-data',

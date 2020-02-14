@@ -30,7 +30,7 @@ class Home extends React.Component{
     }
 
     _mustUpdate = async () =>{
-    fetch('http://solucionesoggk.com/api/v1/appversion', {
+    fetch('https://solucionesoggk.com/api/v1/appversion', {
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',

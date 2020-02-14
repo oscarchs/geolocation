@@ -32,7 +32,7 @@ class SearchPage extends React.Component{
     _getData = () => {
       this.setState({spinner: true});
       console.log("searching for: " + this.state.searchKey);
-      fetch('http://solucionesoggk.com/api/v1/client_status_by_criteria?criteria=' + this.state.searchCriteria + "&key=" + this.state.searchKey, {
+      fetch('https://solucionesoggk.com/api/v1/client_status_by_criteria?criteria=' + this.state.searchCriteria + "&key=" + this.state.searchKey, {
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',

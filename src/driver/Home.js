@@ -66,7 +66,7 @@ class DriverHome extends React.Component{
                 <ListItem
                     Component={CustomMenuItem}
                     menu_item={"Lista de Entregas realizadas"}
-                    onPress={() => this.props.navigation.navigate('CompletedList')}
+                    onPress={() => this.props.navigation.navigate('DeliveredList')}
                 />
                 <ListItem
                     Component={CustomMenuItem}

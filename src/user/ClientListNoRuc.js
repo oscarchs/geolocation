@@ -35,7 +35,7 @@ class ClientListNoRuc extends React.Component{
     }
 
     _getClientList = async () =>{
-        fetch('http://solucionesoggk.com/api/v1/no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/no_ruc_user_clients_detail?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',

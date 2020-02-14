@@ -17,8 +17,11 @@ class CustomGeneralItem extends React.Component{
             { this.props.direccion && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Direccion: {this.props.direccion}</Text> ) }
             { this.props.contacto_nombre && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de contacto: {this.props.contacto_nombre}</Text> ) }
             { this.props.contacto_telefono && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de telefono: {this.props.contacto_telefono}</Text> ) }            
-            { this.props.id_guia_remisionh && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Guia de remisión: {this.props.id_guia_remisionh}</Text> ) }
+            { this.props.codigoNB && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>CódigoNB: {this.props.codigoNB}</Text> ) }
+            { this.props.numero_pedido && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Número de pedido: {this.props.numero_pedido}</Text> ) }
+            { this.props.numeracion && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Guia de remision: {this.props.numeracion}</Text> ) }
             { this.props.f_entrega && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entrega: {this.props.f_entrega}</Text> ) }
+            { this.props.f_entregado && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entregado: {this.props.f_entregado}</Text> ) }
 
 
 
@@ -26,14 +29,18 @@ class CustomGeneralItem extends React.Component{
             { this.props.go_to_map && 
               ( 
                 <View style={{width: 100, height: 50, backgroundColor: 'powderblue'}}>
-                <Icon name='google-maps' type='material-community' iconStyle={styles.buttonIcon} onPress={this.props.go_to_map}/> 
+                  <TouchableOpacity style={styles.item_chiki} onPress={this.props.go_to_map}>
+                    <Icon name='google-maps' type='material-community' iconStyle={styles.buttonIcon}/> 
+                  </TouchableOpacity>
                  </View> 
               ) 
             }
             { this.props.mark_as_delivered && 
               ( 
                 <View style={{width: 100, height: 50, backgroundColor: 'skyblue'}}>
-                <Icon name='check' type='font-awesome' iconStyle={styles.buttonIcon} onPress={this.props.mark_as_delivered}/> 
+                  <TouchableOpacity style={styles.item_chiki} onPress={this.props.mark_as_delivered}>
+                    <Icon name='check' type='font-awesome' iconStyle={styles.buttonIcon}/> 
+                  </TouchableOpacity>
                 </View>
               ) 
             }

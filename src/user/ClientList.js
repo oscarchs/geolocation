@@ -33,7 +33,7 @@ class ClientList extends React.Component{
     }
 
     _getClientList = async () =>{
-        fetch('http://solucionesoggk.com/api/v1/user_clients?user_id='+this.state.current_user.id, {
+        fetch('https://solucionesoggk.com/api/v1/user_clients?user_id='+this.state.current_user.id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'multipart/form-data',

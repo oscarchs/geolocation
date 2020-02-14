@@ -58,7 +58,7 @@ class SucursalForm extends React.Component{
 
     _checkClient = (id) => {
         console.log("checking");
-        fetch('http://solucionesoggk.com/api/v1/check_client_exists?client_ruc='+id, {
+        fetch('https://solucionesoggk.com/api/v1/check_client_exists?client_ruc='+id, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -112,7 +112,7 @@ class SucursalForm extends React.Component{
         this.sucursalFormTwo.append('longitude',position.coords.longitude);
         this.sucursalFormTwo.append('timestamp',position.timestamp);
         console.log(this.sucursalFormTwo);
-            fetch('http://solucionesoggk.com/api/v1/insert_sucursal', {
+            fetch('https://solucionesoggk.com/api/v1/insert_sucursal', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',
