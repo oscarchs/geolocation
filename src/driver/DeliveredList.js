@@ -33,7 +33,7 @@ class DeliveredList extends React.Component{
     };
 
     _getDeliveredList = () => {
-      fetch('http://solucionesoggk.com/api/v1/delivered_list', {
+      fetch('https://solucionesoggk.com/api/v1/delivered_list', {
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -50,7 +50,7 @@ class DeliveredList extends React.Component{
     _goToMap = (item) => {
       this.setState({loading_locations: true});
         //get locations
-        fetch('http://solucionesoggk.com/api/v1/client_locations?ruc_dni=' + item.ruc_dni, {
+        fetch('https://solucionesoggk.com/api/v1/client_locations?ruc_dni=' + item.ruc_dni, {
             method: 'GET',
             headers: {
             'Content-Type': 'multipart/form-data',
