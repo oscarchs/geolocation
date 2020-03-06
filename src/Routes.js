@@ -11,6 +11,7 @@ import Home from './user/Home';
 import AuthLoading from './AuthLoading';
 import Profile from './user/Profile';
 import AdminHome from './admin/Home';
+import AdminMap from './admin/AdminMap';
 import DriverHome from './driver/Home';
 import PendingList from './driver/PendingList';
 import DeliveredList from './driver/DeliveredList';
@@ -25,6 +26,9 @@ import VisitFormImproved from './user/VisitFormImproved';
 import VisitList from './user/VisitList';
 import TraceMap from './user/TraceMap';
 import MyMap from './user/MyMap';
+import CollectorHome from './collector/Home';
+import PendingBills from './collector/PendingBills';
+import PaymentForm from './collector/PaymentForm';
 
 const styles = StyleSheet.create({  
   header: {
@@ -43,6 +47,15 @@ const AdminStack = createBottomTabNavigator({
     screen: AdminHome,
     navigationOptions: {
       tabBarLabel:"Inicio",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="home" size={30} color="#0277bd" />
+      )
+    },
+  },
+  AdminMap: {
+    screen: AdminMap,
+    navigationOptions: {
+      tabBarLabel:"Mapa",
       tabBarIcon: ({ tintColor }) => (
         <Icon name="home" size={30} color="#0277bd" />
       )
@@ -183,6 +196,34 @@ const DriverManagement = createStackNavigator({
         headerBackTitle: 'Atrás',
       },
     },
+    PendingBills:{
+      screen: PendingBills,
+      navigationOptions: {
+        title: 'Lista de facturas pendientes',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    PaymentForm:{
+      screen: PaymentForm,
+      navigationOptions: {
+        title: 'Agregar pago',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    VisitList: {
+      screen: VisitList,
+      navigationOptions: {
+        title: 'Agregar una visita/ver visitas para hoy',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    AddNewVisit: {
+      screen: VisitFormImproved,
+      navigationOptions: {
+        title: 'Agregar una visita',
+        headerBackTitle: 'Atrás',
+      },
+    },
     TraceMap: {
       screen: TraceMap,
       navigationOptions: {
@@ -212,6 +253,95 @@ const DriverStack = createBottomTabNavigator({
     },
   },
   DriverProfile:{
+    screen: Profile,
+    navigationOptions: {
+      tabBarLabel:"Perfil",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="person" size={30} color="#0277bd" />
+      )
+    },
+  },
+})
+
+const CollectorManagement = createStackNavigator({
+    CollectorHome: {
+      screen: CollectorHome,
+      navigationOptions: {
+        title: 'Módulo de Cobranzas',
+        headerBackTitle: 'Atrás',      
+      },
+    },
+    SearchPage: {
+      screen: SearchPage,
+      navigationOptions: {
+        title: 'Búsqueda de clientes',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    PendingBills:{
+      screen: PendingBills,
+      navigationOptions: {
+        title: 'Lista de facturas pendientes',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    PaymentForm:{
+      screen: PaymentForm,
+      navigationOptions: {
+        title: 'Agregar pago',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    VisitList: {
+      screen: VisitList,
+      navigationOptions: {
+        title: 'Agregar una visita/ver visitas para hoy',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    AddNewVisit: {
+      screen: VisitFormImproved,
+      navigationOptions: {
+        title: 'Agregar una visita',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    TraceMapImproved: {
+      screen: TraceMapImproved,
+      navigationOptions: {
+        title: 'Ubicación(es) de cliente(s)',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    TraceMap: {
+      screen: TraceMap,
+      navigationOptions: {
+        title: 'Localizar Cliente',
+        headerBackTitle: 'Atrás',
+      },
+    } 
+  },
+
+  {
+    initialRouteName: 'CollectorHome',
+    defaultNavigationOptions: {
+      headerStyle: styles.header,
+      headerTitleStyle: styles.header_text,
+      headerTintColor:'white',
+    },
+  });
+
+const CollectorStack = createBottomTabNavigator({
+  CollectorHome: {
+    screen: CollectorManagement,
+    navigationOptions: {
+      tabBarLabel:"Inicio",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="home" size={30} color="#0277bd" />
+      )
+    },
+  },
+  CollectorProfile:{
     screen: Profile,
     navigationOptions: {
       tabBarLabel:"Perfil",
@@ -282,6 +412,7 @@ const AppNavigation = createAppContainer(createSwitchNavigator({
     Auth: AuthStack,
     Admin: AdminStack,
     Driver: DriverStack,
+    Collector: CollectorStack,
   },
 )
 );

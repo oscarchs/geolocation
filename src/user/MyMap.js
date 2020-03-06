@@ -93,23 +93,23 @@ class MyMap extends React.Component{
                 if (res.success === true){
                     console.log(res.data);
                     this.setState({client_list: res.data});
-                      ToastAndroid.showWithGravityAndOffset(
-                        res.message,
-                        ToastAndroid.LONG,
-                        ToastAndroid.BOTTOM,
-                        25,
-                        50,   
-                    );                  
+                    //  ToastAndroid.showWithGravityAndOffset(
+                    //    res.message,
+                    //    ToastAndroid.LONG,
+                    //    ToastAndroid.BOTTOM,
+                    //    25,
+                    //    50,   
+                    //);                  
                 }
                 else{
                     this.setState({client_list: res.data});
-                      ToastAndroid.showWithGravityAndOffset(
-                        res.message,
-                        ToastAndroid.LONG,
-                        ToastAndroid.BOTTOM,
-                        25,
-                        50,   
-                    );
+                      //ToastAndroid.showWithGravityAndOffset(
+                      //  res.message,
+                      //  ToastAndroid.LONG,
+                      //  ToastAndroid.BOTTOM,
+                      //  25,
+                      //  50,   
+                    //);
                 }
                 this.setState({spinner: false});
         }));

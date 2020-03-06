@@ -33,6 +33,7 @@ class ClientForm extends React.Component{
             useShortForm: false,
             shouldUpdateForm: true,
             itsAClientUpdate: false,
+            show_send_button: true,
             prevFormData:'',
             formClientOptions: {
                 fields: {
@@ -153,7 +154,13 @@ class ClientForm extends React.Component{
                         else if(res.success == true){
                             console.log( 'asdasda state form', this.state.form_state );
                             this.setState({form_state: res.data })
-                            alert(  res.data ? (res.message +' --> ' + res.data.razon_social) : res.message );
+                            if( res.razon_social == "undefinied" ){
+                                alert( "RUC/DNI no validado por sunat/reciec, debe ser valido para guardar el cliente" );
+                            }
+                            else{
+                                alert(  res.data ? (res.message +' --> ' + res.data.razon_social) : res.message );
+                                this.setState({show_send_button:false});
+                            }
                         }
                     }));
     };
@@ -451,7 +458,7 @@ class ClientForm extends React.Component{
 
                 <Card>
                      <Form ref={clientinfo => this.clientform = clientinfo} type={Client} options={this.state.formClientOptions} onChange={this.formChanged} value={this.state.form_state}/>
-                     <TouchableOpacity style={styles.buttonStyle} onPress={() => this.onSubmitUsingNavigator(this.state.current_user.id, this.state.useShortForm)}> 
+                     <TouchableOpacity disabled={this.state.show_send_button}style={styles.buttonStyle} onPress={() => this.onSubmitUsingNavigator(this.state.current_user.id, this.state.useShortForm)}> 
                         <Text style={styles.textButton}>Guardar Cliente</Text>
                     </TouchableOpacity>
                   

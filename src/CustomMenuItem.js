@@ -12,7 +12,7 @@ class CustomMenuItem extends React.Component{
         return(
             <React.Fragment>
             <TouchableOpacity style={ (this.props.type == 'chiqui') ? (styles.item_chiki):(styles.item)} onPress={this.props.onPress}>
-                <Text style={styles.header}>{this.props.menu_item}</Text>
+                <Text style={styles.header}>{this.props.menu_item.toUpperCase()}</Text>
             </TouchableOpacity>
 
             </React.Fragment>

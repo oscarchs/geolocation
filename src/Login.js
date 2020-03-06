@@ -37,7 +37,7 @@ class Login extends React.Component{
                     selectionColor="#fff"
                     onChangeText={ (text) => this.setState({email:text})}
                     defaultValue = {this.state.email}
-                    
+                    autoCapitalize={'none'}
                     />
                     
                     <TextInput style={styles.inputBox}
@@ -79,7 +79,11 @@ class Login extends React.Component{
                     AsyncStorage.setItem('current_user', JSON.stringify(res.data));
                     if( res.data.idrol == '1'){
                         console.log("es admin");
-                        this.props.navigation.navigate('AdminMap');
+                        this.props.navigation.navigate('AdminHome');
+                    }
+                    else if( res.data.idrol == '6' ){
+                        console.log("is debt collector");
+                        this.props.navigation.navigate('CollectorHome');
                     }
                     else if( res.data.idrol == '7' ){
                         console.log("is driver");

@@ -15,7 +15,7 @@ class SearchPage extends React.Component{
             current_user : '',
             searchKey: '',
             searchData: '',
-            searchCriteria:'ruc_dni',
+            searchCriteria:'razon_social',
             spinner: false,
 
         };
@@ -64,7 +64,6 @@ class SearchPage extends React.Component{
             <SearchBar
             lightTheme
             round
-
             keyboardType=
             {
               this.state.searchCriteria == "ruc_dni" ? "numeric": "default" 
@@ -72,6 +71,7 @@ class SearchPage extends React.Component{
             placeholder= {this.state.searchCriteria}
             onChangeText={this._updateSearch}
             value={this.state.searchKey}
+            autoCapitalize={"characters"}
           />
           <Picker
             selectedValue={this.state.searchCriteria}
@@ -92,6 +92,7 @@ class SearchPage extends React.Component{
                         this.state.searchData.map((item) => (
                              <ListItem
                                 Component={CustomDetailedItem}
+                                ruc_dni={item.ruc_dni}
                                 razon_social={item.razon_social}
                                 direccion={item.sucursal_direccion || item.direccion}
                                 contacto_nombre = {item.contacto_nombre}

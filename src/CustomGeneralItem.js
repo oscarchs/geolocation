@@ -15,6 +15,9 @@ class CustomGeneralItem extends React.Component{
             <TouchableOpacity>
             <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Razon Social: {this.props.razon_social}</Text>
             { this.props.direccion && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Direccion: {this.props.direccion}</Text> ) }
+            { this.props.ruc_dni && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>RUC/DNI: {this.props.ruc_dni}</Text> ) }
+            { this.props.pago_total && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Total: {this.props.pago_total}</Text> ) }
+            { this.props.pago_recibido && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Recibido: {this.props.pago_recibido}</Text> ) }
             { this.props.contacto_nombre && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de contacto: {this.props.contacto_nombre}</Text> ) }
             { this.props.contacto_telefono && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de telefono: {this.props.contacto_telefono}</Text> ) }            
             { this.props.codigoNB && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>CódigoNB: {this.props.codigoNB}</Text> ) }
@@ -22,7 +25,7 @@ class CustomGeneralItem extends React.Component{
             { this.props.numeracion && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Guia de remision: {this.props.numeracion}</Text> ) }
             { this.props.f_entrega && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entrega: {this.props.f_entrega}</Text> ) }
             { this.props.f_entregado && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entregado: {this.props.f_entregado}</Text> ) }
-
+            { this.props.f_cobro && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de cobro: {this.props.f_cobro}</Text> ) }
 
 
             <View style={{flex: 1, flexDirection: 'row'}}>
@@ -40,6 +43,15 @@ class CustomGeneralItem extends React.Component{
                 <View style={{width: 100, height: 50, backgroundColor: 'skyblue'}}>
                   <TouchableOpacity style={styles.item_chiki} onPress={this.props.mark_as_delivered}>
                     <Icon name='check' type='font-awesome' iconStyle={styles.buttonIcon}/> 
+                  </TouchableOpacity>
+                </View>
+              ) 
+            }
+            { this.props.add_payment && 
+              ( 
+                <View style={{width: 100, height: 50, backgroundColor: 'skyblue'}}>
+                  <TouchableOpacity style={styles.item_chiki} onPress={this.props.add_payment}>
+                    <Icon name='money' type='font-awesome' iconStyle={styles.buttonIcon}/> 
                   </TouchableOpacity>
                 </View>
               ) 

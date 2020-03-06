@@ -117,7 +117,7 @@ class VisitFormImproved extends React.Component{
             body: latlong,
             }).then((response) => response.json()).then(res => {
                 var new_list = {
-                                    name:'RUC ('+res.length+')',
+                                    name:'CLIENTES ('+res.length+')',
                                     id: 0,
                                     children: Array.from( res, item => {
                                                                     let dict = {};
@@ -132,33 +132,6 @@ class VisitFormImproved extends React.Component{
                 this.setState({  clients_options: [...this.state.clients_options, new_list]});
                 this.setState({clientList:res});
             });
-
-
-        fetch('https://solucionesoggk.com/api/v1/near_clients_no_ruc', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Cache-Control': 'no-cache'
-            },
-            body: latlong,
-            }).then((response) => response.json()).then(res => {
-                var new_list = {
-                                    name:'NO RUC ('+res.length+')',
-                                    id: 1,
-                                    children: Array.from( res, item => {
-                                                                    let dict = {};
-                                                                    dict['id'] = item.id_cliente_no_ruc;
-                                                                    dict['name'] = item.razon_social + " ("+ item.direccion + ")";
-                                                                    dict['type'] = 'id_cliente_no_ruc';
-                                                                    return dict;      
-                                                                        } ),
-
-                                }
-                res.map( item => console.log(item));
-                this.setState({  clients_options: [...this.state.clients_options, new_list]});
-                this.setState({clientListNoRuc:res});
-            });
-
 
         fetch('https://solucionesoggk.com/api/v1/near_clients_broken_location', {
             method: 'POST',
@@ -252,8 +225,10 @@ class VisitFormImproved extends React.Component{
     render(){
         let visit_subject = t.enums({
             primera_visita: 'Primera Visita',
-            visita:'Visita',
+            visita:'Visita regular',
             pedido: 'Pedido',
+            cobraza: 'Cobranza',
+            entrega: 'Entrega de pedido'
         })
     
         let Visit = t.struct({
@@ -267,7 +242,7 @@ class VisitFormImproved extends React.Component{
                 <KeyboardAvoidingView behavior='padding'>
                 <Spinner
                     visible={this.state.spinner}
-                    textContent={'Obteniendo clientes cercanos...'}
+                    textContent={'Obteniendo ubicación actual...'}
                     textStyle={styles.spinnerTextStyle}
                     />
                 <Spinner
@@ -288,7 +263,7 @@ class VisitFormImproved extends React.Component{
                         subKey="children"
                         expandDropDowns
                         searchPlaceholderText="Búsqueda de clientes cercanos"
-                        selectText={this.state.selected_client.name || "Clientes Cercanos (RUC/NO RUC)"}
+                        selectText={this.state.selected_client.name || "Clientes Cercanos"}
                         showDropDowns={true}
                         expandDropDowns = {false}
                         readOnlyHeadings={true}

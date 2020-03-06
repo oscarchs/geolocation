@@ -13,6 +13,7 @@ class CustomDetailedItem extends React.Component{
             <React.Fragment>
             <View style={styles.info}>
             <TouchableOpacity onPress={this.props.onPress}>
+            <Text style={{color: '#517fa4',fontWeight: 'bold'}}>RUC/DNI: {this.props.ruc_dni}</Text>
             <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Razon Social: {this.props.razon_social}</Text>
             <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Direccion: {this.props.direccion}</Text>
             <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de contacto: {this.props.contacto_nombre}</Text>

@@ -4,13 +4,15 @@ import { StyleSheet, Text, View, StatusBar,
     Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Header} from 'react-native-elements';
-
+import LocationService from '../location/LocationService';
 
 class AdminHome extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             current_user : '',
+            spinner: false,
+
         };
         this.currentVersion = '0.1';
         this.updateAvailable = false;
@@ -28,6 +30,7 @@ class AdminHome extends React.Component{
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',
+            'Cache-Control': 'no-cache'
         },
         }).then((response) => response.json()).then((res => {
             if (res.success === true){
@@ -39,11 +42,13 @@ class AdminHome extends React.Component{
         }));
     }
 
-    
     componentDidMount = () =>{
-        console.log(this.state.current_user);
+        let location_service = new LocationService();
+        location_service._checkLocationPermissions();
+        //location_service._startBackgroundService();
         console.log("home");
     }
+
     render(){
         return(
             <React.Fragment>

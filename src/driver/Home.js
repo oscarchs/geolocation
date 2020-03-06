@@ -24,6 +24,12 @@ class DriverHome extends React.Component{
         this._mustUpdate();
     }
     
+    componentDidMount = () =>{
+        let location_service = new LocationService();
+        location_service._checkLocationPermissions();
+        //location_service._startBackgroundService();
+        console.log("home");
+    }
     _getCurrentUser = async () =>{
         var current_user = await AsyncStorage.getItem('current_user');
         this.setState( {current_user: JSON.parse(current_user)});
@@ -70,8 +76,19 @@ class DriverHome extends React.Component{
                 />
                 <ListItem
                     Component={CustomMenuItem}
-                    menu_item={"Búsqueda/Verificación de clientes"}
+                    menu_item={"Lista de facturas pendientes"}
+                    onPress={() => this.props.navigation.navigate('PendingBills')}
+                />
+                <ListItem
+                    Component={CustomMenuItem}
+                    menu_item={"Búsqueda de clientes"}
                     onPress={() => this.props.navigation.navigate('SearchPage')}
+                />
+
+                <ListItem
+                    Component={CustomMenuItem}
+                    menu_item={"Visitas"}
+                    onPress={() => this.props.navigation.navigate('VisitList')}
                 />
 
             </View>

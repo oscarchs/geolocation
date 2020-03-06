@@ -85,7 +85,7 @@ class DeliveredList extends React.Component{
                 textStyle={styles.spinnerTextStyle}
             />
 
-         <Card title="Entregas pendientes">
+         <Card title="Entregas realizadas">
                 {
                     this.state.pending_list ?
                     (

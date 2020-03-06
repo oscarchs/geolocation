@@ -10,7 +10,7 @@ import CustomListItem from '../CustomListItem';
 import LocationService from '../location/LocationService';
 
 
-class Home extends React.Component{
+class CollectorHome extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -22,6 +22,13 @@ class Home extends React.Component{
         this.updateAvailable = false;
         this._getCurrentUser();
         this._mustUpdate();
+    }
+    
+    componentDidMount = () =>{
+        let location_service = new LocationService();
+        location_service._checkLocationPermissions();
+        //location_service._startBackgroundService();
+        console.log("home");
     }
     
     _getCurrentUser = async () =>{
@@ -46,26 +53,22 @@ class Home extends React.Component{
         }));
     }
 
-    componentDidMount = () =>{
-        let location_service = new LocationService();
-        location_service._startBackgroundService();
-        console.log("home");
-    }
     render(){
         return(
             <React.Fragment>
            {/*<ClientForm /> */}
            {/*<BackgroundLocationExample/> */}
+
            <View>
                 <ListItem
                     Component={CustomMenuItem}
-                    menu_item={"Clientes con RUC (datos completos)"}
-                    onPress={ () => this.props.navigation.navigate('ClientWithRuc')}
+                    menu_item={"Lista de facturas pendientes"}
+                    onPress={() => this.props.navigation.navigate('PendingBills')}
                 />
                 <ListItem
                     Component={CustomMenuItem}
-                    menu_item={"Clientes sin RUC (datos incompletos)"}
-                    onPress={() => this.props.navigation.navigate('ClientNoRuc')}
+                    menu_item={"Búsqueda de clientes"}
+                    onPress={() => this.props.navigation.navigate('SearchPage')}
                 />
                 <ListItem
                     Component={CustomMenuItem}
@@ -73,17 +76,6 @@ class Home extends React.Component{
                     onPress={() => this.props.navigation.navigate('VisitList')}
                 />
 
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Búsqueda de clientes"}
-                    onPress={() => this.props.navigation.navigate('SearchPage')}
-                />
-
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Lista de visitas sugeridas por fecha"}
-                    onPress={() => this.props.navigation.navigate('RecommendedVisitList')}
-                />
 
             </View>
            </React.Fragment>
@@ -103,4 +95,4 @@ const styles = StyleSheet.create({
     },  
     
 });
-export default Home;
+export default CollectorHome;
