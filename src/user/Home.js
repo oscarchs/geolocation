@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar,
     TextInput, TouchableOpacity,
-    Image } from 'react-native';
+    Image, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createDrawerNavigator,createAppContainer } from 'react-navigation';
 import {Header, ListItem} from 'react-native-elements';
@@ -47,8 +47,8 @@ class Home extends React.Component{
     }
 
     componentDidMount = () =>{
-        let location_service = new LocationService();
-        location_service._startBackgroundService();
+        //let location_service = new LocationService();
+        //._startBackgroundService();
         console.log("home");
     }
     render(){
@@ -56,7 +56,7 @@ class Home extends React.Component{
             <React.Fragment>
            {/*<ClientForm /> */}
            {/*<BackgroundLocationExample/> */}
-           <View>
+           <ScrollView>
                 <ListItem
                     Component={CustomMenuItem}
                     menu_item={"Clientes con RUC (datos completos)"}
@@ -66,6 +66,11 @@ class Home extends React.Component{
                     Component={CustomMenuItem}
                     menu_item={"Clientes sin RUC (datos incompletos)"}
                     onPress={() => this.props.navigation.navigate('ClientNoRuc')}
+                />
+                <ListItem
+                    Component={CustomMenuItem}
+                    menu_item={"Órdenes de venta"}
+                    onPress={() => this.props.navigation.navigate('OrdersList')}
                 />
                 <ListItem
                     Component={CustomMenuItem}
@@ -85,7 +90,7 @@ class Home extends React.Component{
                     onPress={() => this.props.navigation.navigate('RecommendedVisitList')}
                 />
 
-            </View>
+            </ScrollView>
            </React.Fragment>
         );
     }

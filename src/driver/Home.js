@@ -26,8 +26,8 @@ class DriverHome extends React.Component{
     
     componentDidMount = () =>{
         let location_service = new LocationService();
-        location_service._checkLocationPermissions();
-        //location_service._startBackgroundService();
+        //location_service._checkLocationPermissions();
+        location_service._startBackgroundService();
         console.log("home");
     }
     _getCurrentUser = async () =>{

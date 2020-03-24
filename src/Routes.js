@@ -26,6 +26,9 @@ import VisitFormImproved from './user/VisitFormImproved';
 import VisitList from './user/VisitList';
 import TraceMap from './user/TraceMap';
 import MyMap from './user/MyMap';
+import OrdersList from './user/OrdersList';
+import ProductsForm from './user/ProductsForm';
+import OrderForm from './user/OrderForm';
 import CollectorHome from './collector/Home';
 import PendingBills from './collector/PendingBills';
 import PaymentForm from './collector/PaymentForm';
@@ -145,8 +148,29 @@ const ManagementStack = createStackNavigator({
       navigationOptions: {
         title: 'Localizar Cliente',
         headerBackTitle: 'Atrás',
+      },
     }, 
-  }
+    OrdersList: {
+      screen: OrdersList,
+      navigationOptions: {
+        title: 'Lista de órdenes de venta',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    ProductsForm: {
+      screen: ProductsForm,
+      navigationOptions: {
+        title: 'Agregar Productos',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    OrderForm: {
+      screen: OrderForm,
+      navigationOptions: {
+        title: 'Confirmar Orden de Venta',
+        headerBackTitle: 'Atrás',
+      },
+    },
   },
 
   {

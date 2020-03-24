@@ -16,6 +16,7 @@ class CustomGeneralItem extends React.Component{
             <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Razon Social: {this.props.razon_social}</Text>
             { this.props.direccion && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Direccion: {this.props.direccion}</Text> ) }
             { this.props.ruc_dni && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>RUC/DNI: {this.props.ruc_dni}</Text> ) }
+            { this.props.correlativo && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Correlativo: {this.props.correlativo}</Text> ) }
             { this.props.pago_total && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Total: {this.props.pago_total}</Text> ) }
             { this.props.pago_recibido && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Recibido: {this.props.pago_recibido}</Text> ) }
             { this.props.contacto_nombre && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Nombre de contacto: {this.props.contacto_nombre}</Text> ) }
@@ -26,9 +27,20 @@ class CustomGeneralItem extends React.Component{
             { this.props.f_entrega && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entrega: {this.props.f_entrega}</Text> ) }
             { this.props.f_entregado && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de entregado: {this.props.f_entregado}</Text> ) }
             { this.props.f_cobro && ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Fecha de cobro: {this.props.f_cobro}</Text> ) }
+            
+            { this.props.estado_doc && 
+              ( <Text style={{color: '#517fa4',fontWeight: 'bold'}}>Estado:
+                  {
+                    (this.props.estado_doc == '0') ? (<Text style={{color: 'red',fontWeight: 'bold'}}> Pendiente</Text>):
+                    (this.props.estado_doc == '1') ? (<Text style={{color: 'green',fontWeight: 'bold'}}> Facturada</Text>):
+                    (<Text style={{color: 'grey',fontWeight: 'bold'}}> Anulada</Text>)
+                  }
+                </Text>
+              ) 
+            }
 
 
-            <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{flex: 1, flexDirection: 'row-reverse'}}>
             { this.props.go_to_map && 
               ( 
                 <View style={{width: 100, height: 50, backgroundColor: 'powderblue'}}>
@@ -56,6 +68,15 @@ class CustomGeneralItem extends React.Component{
                 </View>
               ) 
             }
+            { this.props.make_null && 
+              ( 
+                <View style={{width: 100, height: 50, backgroundColor: 'white'}}>
+                  <TouchableOpacity style={styles.item_chiki} onPress={this.props.make_null}>
+                    <Icon name='trash-o' type='font-awesome' iconStyle={styles.buttonIcon}/> 
+                  </TouchableOpacity>
+                </View>
+              ) 
+            }
             </View>
             </TouchableOpacity>
             </View>
@@ -73,8 +94,8 @@ const styles = StyleSheet.create({
       height:200,
     },
     buttonIcon:{
-      color:'#ffffff',
-      fontSize:40,
+      color:'skyblue',
+      fontSize:30,
     },
     avatar: {
       width: 130,

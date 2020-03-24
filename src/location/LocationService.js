@@ -88,7 +88,8 @@ class LocationService{
           enableHeadless: true,
         }, () => {
             let current_time = new Date();
-            if( current_time.getDay() >= 1 && current_time.getDay() <= 5 && current_time.getHours() >= 9 && current_time.getHours() <= 18){
+            if( (current_time.getDay() >= 1 && current_time.getDay() <= 5 && current_time.getHours() >= 9 && current_time.getHours() <= 18) || 
+                (current_time.getDay() == 6 && current_time.getHours() >= 9 && current_time.getHours() <= 13) ){
                 Geolocation.getCurrentPosition(
                     this._postLocationRoute,
                     error => console.log(error),
