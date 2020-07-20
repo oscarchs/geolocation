@@ -12,7 +12,7 @@ import moment from 'moment';
 var Form = t.form.Form;
 
 
-class OrderForm extends React.Component{
+class ClientOrderForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -46,7 +46,8 @@ class OrderForm extends React.Component{
                         }
                     },
                     codigoNB:{
-                        label: 'N° nota de pedido',
+                        hidden:true,
+                        label: 'N° Nota de pedido',
                         placeholder: 'Orden de venta',
                     },
                 }
@@ -63,7 +64,7 @@ class OrderForm extends React.Component{
         this.selected_id;
         this.selected_id_type;
         this.orderFormTwo = new FormData();
-        this._getCurrentUser();
+        this._getCurrentUser().then( () => this.setState({selected_client:{id: this.state.current_user.idcliente, name: this.state.current_user.razon_social}}));
     }
 
 
@@ -75,6 +76,7 @@ class OrderForm extends React.Component{
 
         this.setState({selected_products: this.props.navigation.getParam('selected_products',null)});
         this.setState({totals: this.props.navigation.getParam('totals',null)});
+
 
 
     }
@@ -128,14 +130,17 @@ class OrderForm extends React.Component{
         }
         else{
             this.setState({submmiting: true});
-            this.orderFormTwo.append('idcliente',this.state.selected_client.id);
-            this.orderFormTwo.append('idvendedor',this.state.current_user.id);
+            this.orderFormTwo.append('idcliente',this.state.current_user.idcliente);
+            this.orderFormTwo.append('idvendedor','0');
             this.orderFormTwo.append('subtotal',this.state.totals.sub_total);
             this.orderFormTwo.append('total',this.state.totals.total);
             this.orderFormTwo.append('igv',this.state.totals.igv);
             for(var key in valid_form){
                     if( key == 'f_entrega' || key=='f_cobro'){
                         this.orderFormTwo.append(key,moment(valid_form[key]).format('YYYY-MM-DD'));
+                    }
+                    else if ( key == 'codigoNB' ){
+                        this.orderFormTwo.append(key,'0');
                     }
                     else{
                         this.orderFormTwo.append(key,valid_form[key]);
@@ -183,7 +188,7 @@ class OrderForm extends React.Component{
                                         }
                                     }));
                                     this.orderFormTwo = new FormData();
-                                    this.props.navigation.navigate('OrdersList');
+                                    this.props.navigation.popToTop();
 
             }));
 
@@ -209,7 +214,7 @@ class OrderForm extends React.Component{
         let Sale = t.struct({
             f_entrega: t.Date,
             f_cobro: t.Date,
-            codigoNB: t.Number,
+            codigoNB: t.maybe(t.Number),
             moneda: type_moneda,
         })
 
@@ -231,22 +236,7 @@ class OrderForm extends React.Component{
                 
                 <Card title={'Orden de venta'}>
 
-                        <SectionedMultiSelect
-                        single
-                        hideConfirm
-                        items={this.state.clients_options}
-                        uniqueKey="name"
-                        subKey="children"
-                        expandDropDowns
-                        searchPlaceholderText="Búsqueda de clientes"
-                        selectText={this.state.selected_client.name || "Clientes"}
-                        showDropDowns={true}
-                        expandDropDowns = {false}
-                        readOnlyHeadings={true}
-                        onSelectedItemsChange={ selected => {} }
-                        onSelectedItemObjectsChange={ (selected) => this.setState({selected_client:selected[0]}) }
-                        styles = {styles.map_options}
-                        />
+                    <Text> Cliente: {this.state.selected_client.name} </Text>
 
                      <Form ref={orderinfo => this.orderform = orderinfo} type={Sale} options={this.state.orderFormOptions} onChange={this.formChanged} value={this.state.form_state}/>
 
@@ -361,4 +351,4 @@ const styles = StyleSheet.create({
         color: 'black',
     },
 });
-export default OrderForm;
+export default ClientOrderForm;

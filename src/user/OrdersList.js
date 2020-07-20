@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar,
     TextInput, TouchableOpacity,
-    Image, ScrollView, RefreshControl, Picker, Alert} from 'react-native';
+    Image, ScrollView, RefreshControl, Picker, Alert, Linking} from 'react-native';
 import { SearchBar, Button,Header,Card, ListItem, List } from 'react-native-elements';
 import CustomMenuItem from '../CustomMenuItem';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -17,10 +17,10 @@ class OrderList extends React.Component{
             spinner: false,
             submitting: false,
         };
+        this._getCurrentUser().then( () => this._getOrdersList() );
     }
     componentDidMount = async () => {
         this.setState({spinner: true});
-        this._getCurrentUser().then( this._getOrdersList() );
     };
 
     _getCurrentUser = async () =>{
@@ -28,8 +28,9 @@ class OrderList extends React.Component{
         this.setState({current_user : JSON.parse(current_user)});
     };
 
-    _getOrdersList = () => {
-      fetch('http://192.168.1.33/~oscar/oggk-restserver/index.php/v1/user_sale_orders?user_id=29', {
+    _getOrdersList = async () => {
+      console.log(this.state.current_user.id);
+      fetch('https://solucionesoggk.com/api/v1/user_sale_orders?user_id='+this.state.current_user.id, {
         method: 'GET',
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -55,7 +56,7 @@ class OrderList extends React.Component{
                   var update_form = new FormData();
                   update_form.append('id_orden_ventah',item.id_orden_ventah);
                   update_form.append('estado_doc',2);
-                  fetch('http://192.168.1.33/~oscar/oggk-restserver/index.php/v1/update_order', {
+                  fetch('https://solucionesoggk.com/api/v1/update_order', {
                         method: 'POST',
                         headers: {
                                 'Content-Type': 'multipart/form-data',
@@ -76,6 +77,18 @@ class OrderList extends React.Component{
         {cancelable: false},
       );
     };
+
+
+    _openInBrowser = (item) => {
+      let url = "https://erp.solucionesoggk.com/info_orden_venta?id="+item.id_orden_ventah;
+      Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          Alert("No se puede abrir el navegador");
+        }
+      });
+    }
 
     render(){
         return(
@@ -106,7 +119,7 @@ class OrderList extends React.Component{
                         this.state.orders_list.map((item) => (
                              <ListItem
                                 Component={CustomGeneralItem}
-                                correlativo={item.id_orden_ventah}
+                                correlativo={item.numeracion}
                                 razon_social={item.razon_social}
                                 codigoNB={item.codigoNB}
                                 f_emision={item.created_at}
@@ -115,6 +128,7 @@ class OrderList extends React.Component{
                                 f_cobro={item.f_cobro}
                                 estado_doc={item.estado_doc}
                                 make_null={ () => this._makeNullable(item) }
+                                open_browser={ () => this._openInBrowser(item) }
                                 key={item.id_orden_ventah}
                                 bottomDivider
                             />

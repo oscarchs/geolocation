@@ -32,6 +32,11 @@ import OrderForm from './user/OrderForm';
 import CollectorHome from './collector/Home';
 import PendingBills from './collector/PendingBills';
 import PaymentForm from './collector/PaymentForm';
+import ClientHome from './client/Home';
+import ClientProfile from './client/Profile';
+import ClientProductsForm from './client/ClientProductsForm';
+import ClientOrderForm from './client/ClientOrderForm';
+
 
 const styles = StyleSheet.create({  
   header: {
@@ -287,6 +292,60 @@ const DriverStack = createBottomTabNavigator({
   },
 })
 
+const ClientManagement = createStackNavigator({
+    ClientHome: {
+      screen: ClientHome,
+      navigationOptions: {
+        title: 'Módulo de Entregas',
+        headerBackTitle: 'Atrás',      
+      },
+    },
+    ClientProductsForm: {
+      screen: ClientProductsForm,
+      navigationOptions: {
+        title: 'Agregar Productos',
+        headerBackTitle: 'Atrás',
+      },
+    },
+    ClientOrderForm: {
+      screen: ClientOrderForm,
+      navigationOptions: {
+        title: 'Confirmar Orden de Venta',
+        headerBackTitle: 'Atrás',
+      },
+    },
+  },
+
+  {
+    initialRouteName: 'ClientHome',
+    defaultNavigationOptions: {
+      headerStyle: styles.header,
+      headerTitleStyle: styles.header_text,
+      headerTintColor:'white',
+    },
+  });
+
+const ClientStack = createBottomTabNavigator({
+  ClientHome: {
+    screen: ClientManagement,
+    navigationOptions: {
+      tabBarLabel:"Inicio",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="home" size={30} color="#0277bd" />
+      )
+    },
+  },
+  ClientProfile:{
+    screen: ClientProfile,
+    navigationOptions: {
+      tabBarLabel:"Perfil",
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="person" size={30} color="#0277bd" />
+      )
+    },
+  },
+})
+
 const CollectorManagement = createStackNavigator({
     CollectorHome: {
       screen: CollectorHome,
@@ -437,6 +496,7 @@ const AppNavigation = createAppContainer(createSwitchNavigator({
     Admin: AdminStack,
     Driver: DriverStack,
     Collector: CollectorStack,
+    Client: ClientStack,
   },
 )
 );

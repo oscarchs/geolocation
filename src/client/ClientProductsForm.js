@@ -13,7 +13,7 @@ import CartItem from '../CartItem';
 var Form = t.form.Form;
 
 
-class ProductsForm extends React.Component{
+class ClientProductsForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -221,7 +221,7 @@ class ProductsForm extends React.Component{
                   {text: 'OK', 
                       onPress: () => {
                         console.log(this.state.total);
-                        this.props.navigation.navigate('OrderForm',{selected_products:this.state.selected_products_post_info, 
+                        this.props.navigation.navigate('ClientOrderForm',{selected_products:this.state.selected_products_post_info, 
                                                                     totals:{
                                                                             sub_total:this.state.sub_total,
                                                                             igv:this.state.igv,
@@ -292,7 +292,7 @@ class ProductsForm extends React.Component{
                                         on_quantity_change={ this._onQuantityChange }
                                         on_unit_price_change={ this._onUnitaryPriceChange }
                                         remove={ () => this._removeItem(item)}
-                                        editable={true}
+                                        editable={false}
                                     />
                                     ))
                             ) : (
@@ -394,4 +394,4 @@ const styles = StyleSheet.create({
         color: 'black',
     },
 });
-export default ProductsForm;
+export default ClientProductsForm;

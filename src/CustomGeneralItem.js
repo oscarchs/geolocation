@@ -77,6 +77,15 @@ class CustomGeneralItem extends React.Component{
                 </View>
               ) 
             }
+            { this.props.open_browser && 
+              ( 
+                <View style={{width: 100, height: 50, backgroundColor: 'white'}}>
+                  <TouchableOpacity style={styles.item_chiki} onPress={this.props.open_browser}>
+                    <Icon name='file-pdf-o' type='font-awesome' iconStyle={styles.buttonIcon}/> 
+                  </TouchableOpacity>
+                </View>
+              ) 
+            }
             </View>
             </TouchableOpacity>
             </View>

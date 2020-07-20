@@ -38,6 +38,10 @@ class AuthLoading extends React.Component{
                 console.log("is driver");
                 this.props.navigation.navigate('DriverHome');
             }
+            else if( this.state.current_user.idrol == 'cliente'){
+                console.log("is client");
+                this.props.navigation.navigate('ClientHome');
+            }
             else{
                 console.log("es usuario regular");
                 this.props.navigation.navigate('Home');

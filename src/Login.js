@@ -89,6 +89,10 @@ class Login extends React.Component{
                         console.log("is driver");
                         this.props.navigation.navigate('DriverHome');
                     }
+                    else if( res.data.idrol == 'cliente'){
+                        console.log("is client");
+                        this.props.navigation.navigate('ClientHome');
+                    }
                     else{
                         console.log("es usuario regular");
                         this.props.navigation.navigate('Home');

@@ -53,10 +53,10 @@ class CartItem extends React.Component{
                 </View>
                 <View style={{flex: 4, flexDirection: 'row', marginBottom:25}}>
                     <View style={{flex:2,width: 100, height: 20}}>
-                        <TextInput keyboardType={"numeric"} style={styles.inputBox} value={this.props.cantidad} onChangeText={ (text) => {this.props.on_quantity_change(text,this.props.name)}}/>
+                        <TextInput keyboardType={"numeric"} style={styles.inputBox} value={this.props.cantidad} onChangeText={ (text) => {this.props.on_quantity_change(text,this.props.name)}} editable={this.props.editable}/>
                      </View> 
                     <View style={{flex:2,width: 100, height: 20}}>
-                        <TextInput keyboardType={"numeric"} style={styles.inputBox} value={this.props.precio_unit} onChangeText={ (text) => {this.props.on_unit_price_change(text,this.props.name)}}/>
+                        <TextInput keyboardType={"numeric"} style={styles.inputBox} value={this.props.precio_unit} onChangeText={ (text) => {this.props.on_unit_price_change(text,this.props.name)}} editable={this.props.editable}/>
                      </View> 
                     <View style={{flex:2,width: 100, height: 20, backgroundColor: 'white'}}>
                       <TouchableOpacity style={styles.item_chiki} onPress={this.props.remove}>

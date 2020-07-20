@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar,
     TextInput, TouchableOpacity,
-    Image, ScrollView } from 'react-native';
+    Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createDrawerNavigator,createAppContainer } from 'react-navigation';
 import {Header, ListItem} from 'react-native-elements';
@@ -10,7 +10,7 @@ import CustomListItem from '../CustomListItem';
 import LocationService from '../location/LocationService';
 
 
-class Home extends React.Component{
+class ClientHome extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ class Home extends React.Component{
         this._getCurrentUser();
         this._mustUpdate();
     }
-    
+
     _getCurrentUser = async () =>{
         var current_user = await AsyncStorage.getItem('current_user');
         this.setState( {current_user: JSON.parse(current_user)});
@@ -47,50 +47,24 @@ class Home extends React.Component{
     }
 
     componentDidMount = () =>{
-        let location_service = new LocationService();
-        location_service._startBackgroundService();
-        console.log("home");
+        //let location_service = new LocationService();
+        //location_service._startBackgroundService();
+        //console.log("home");
     }
     render(){
         return(
             <React.Fragment>
            {/*<ClientForm /> */}
            {/*<BackgroundLocationExample/> */}
-           <ScrollView>
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Clientes con RUC (datos completos)"}
-                    onPress={ () => this.props.navigation.navigate('ClientWithRuc')}
-                />
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Clientes sin RUC (datos incompletos)"}
-                    onPress={() => this.props.navigation.navigate('ClientNoRuc')}
-                />
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Órdenes de venta"}
-                    onPress={() => this.props.navigation.navigate('OrdersList')}
-                />
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Visitas"}
-                    onPress={() => this.props.navigation.navigate('VisitList')}
-                />
 
-                <ListItem
+           <View>
+          <ListItem
                     Component={CustomMenuItem}
-                    menu_item={"Búsqueda de clientes"}
-                    onPress={() => this.props.navigation.navigate('SearchPage')}
-                />
+                    menu_item={"NUEVO PEDIDO"}
+                    onPress={ () => this.props.navigation.navigate('ClientProductsForm')}
+          />
 
-                <ListItem
-                    Component={CustomMenuItem}
-                    menu_item={"Lista de visitas sugeridas por fecha"}
-                    onPress={() => this.props.navigation.navigate('RecommendedVisitList')}
-                />
-
-            </ScrollView>
+            </View>
            </React.Fragment>
         );
     }
@@ -108,4 +82,4 @@ const styles = StyleSheet.create({
     },  
     
 });
-export default Home;
+export default ClientHome;
