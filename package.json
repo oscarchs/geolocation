@@ -25,7 +25,7 @@
     "react-native-gps-state": "^2.0.3",
     "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-maps": "0.26.1",
-    "react-native-reanimated": "^1.6.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-sectioned-multi-select": "^0.7.6",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
